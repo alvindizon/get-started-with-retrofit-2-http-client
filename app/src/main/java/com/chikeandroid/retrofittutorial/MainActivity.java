@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static com.chikeandroid.retrofittutorial.data.remote.ApiUtils.*;
 
@@ -52,32 +55,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadAnswers() {
+        mService.getAnswers().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<SOAnswersResponse>() {
+                    @Override
+                    public void onCompleted() {
+                    }
 
-//        enqueue() asynchronously sends the request and notifies your app with a callback
-//        when a response comes back. Since this request is asynchronous,
-//        Retrofit handles it on a background thread so that the main UI thread
-//        isn't blocked or interfered with.
-        mService.getAnswers().enqueue(new Callback<SOAnswersResponse>() {
-//            To use enqueue(), you have to implement two callback methods: onResponse and onFailure
-            @Override
-            public void onResponse(Call<SOAnswersResponse> call, Response<SOAnswersResponse> response) {
+                    @Override
+                    public void onError(Throwable e) {
+                    }
 
-                if(response.isSuccessful()) {
-                    mAdapter.updateAnswers(response.body().getItems());
-                    Log.d("MainActivity", "posts loaded from API");
-                }else {
-                    int statusCode  = response.code();
-                    // handle request errors depending on status code
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SOAnswersResponse> call, Throwable t) {
-                showErrorMessage();
-                Log.d("MainActivity", "error loading from API");
-
-            }
-        });
+                    @Override
+                    public void onNext(SOAnswersResponse soAnswersResponse) {
+                        mAdapter.updateAnswers(soAnswersResponse.getItems());
+                    }
+                });
     }
 
     public void showErrorMessage() {
