@@ -5,12 +5,13 @@ import com.chikeandroid.retrofittutorial.data.model.SOAnswersResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import rx.Observable;
 
 public interface SOService {
 
     @GET("/answers?order=desc&sort=activity&site=stackoverflow")
-    Call<SOAnswersResponse> getAnswers();
+    Observable<SOAnswersResponse> getAnswers();
 
     @GET("/answers?order=desc&sort=activity&site=stackoverflow")
-    Call<SOAnswersResponse> getAnswers(@Query("tagged") String tags);
+    Observable<SOAnswersResponse> getAnswers(@Query("tagged") String tags);
 }
