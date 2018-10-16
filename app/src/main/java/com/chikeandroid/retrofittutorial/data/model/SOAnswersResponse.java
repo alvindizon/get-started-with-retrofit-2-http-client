@@ -1,26 +1,20 @@
 package com.chikeandroid.retrofittutorial.data.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 
 import java.util.List;
 
 public class SOAnswersResponse {
 
-    @SerializedName("items")
-    @Expose
+    @Json(name = "items")
     private List<Item> items = null;
-    @SerializedName("has_more")
-    @Expose
+    @Json(name = "has_more")
     private Boolean hasMore;
-    @SerializedName("backoff")
-    @Expose
+    @Json(name = "backoff")
     private Integer backoff;
-    @SerializedName("quota_max")
-    @Expose
+    @Json(name = "quota_max")
     private Integer quotaMax;
-    @SerializedName("quota_remaining")
-    @Expose
+    @Json(name = "quota_remaining")
     private Integer quotaRemaining;
 
     public List<Item> getItems() {

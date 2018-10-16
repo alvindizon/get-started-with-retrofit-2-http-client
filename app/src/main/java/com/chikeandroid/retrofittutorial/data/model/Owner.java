@@ -1,30 +1,23 @@
 package com.chikeandroid.retrofittutorial.data.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+
+import com.squareup.moshi.Json;
 
 public class Owner {
 
-    @SerializedName("reputation")
-    @Expose
+    @Json(name = "reputation")
     private Integer reputation;
-    @SerializedName("user_id")
-    @Expose
+    @Json(name = "user_id")
     private Integer userId;
-    @SerializedName("user_type")
-    @Expose
+    @Json(name = "user_type")
     private String userType;
-    @SerializedName("profile_image")
-    @Expose
+    @Json(name = "profile_image")
     private String profileImage;
-    @SerializedName("display_name")
-    @Expose
+    @Json(name = "display_name")
     private String displayName;
-    @SerializedName("link")
-    @Expose
+    @Json(name = "link")
     private String link;
-    @SerializedName("accept_rate")
-    @Expose
+    @Json(name = "accept_rate")
     private Integer acceptRate;
 
     public Integer getReputation() {

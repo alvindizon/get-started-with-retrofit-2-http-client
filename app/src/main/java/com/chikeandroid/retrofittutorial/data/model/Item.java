@@ -1,36 +1,25 @@
 package com.chikeandroid.retrofittutorial.data.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+
+import com.squareup.moshi.Json;
 
 public class Item {
 
-    @SerializedName("owner")
-    @Expose
+    @Json(name = "owner")
     private Owner owner;
-    @SerializedName("is_accepted")
-    @Expose
+    @Json(name = "is_accepted")
     private Boolean isAccepted;
-    @SerializedName("score")
-    @Expose
+    @Json(name = "score")
     private Integer score;
-    @SerializedName("last_activity_date")
-    @Expose
+    @Json(name = "last_activity_date")
     private Integer lastActivityDate;
-    @SerializedName("creation_date")
-    @Expose
+    @Json(name = "creation_date")
     private Integer creationDate;
-    @SerializedName("answer_id")
-    @Expose
+    @Json(name = "answer_id")
     private Integer answerId;
-    @SerializedName("question_id")
-    @Expose
+    @Json(name = "question_id")
     private Integer questionId;
-    @SerializedName("community_owned_date")
-    @Expose
-    private Integer communityOwnedDate;
-    @SerializedName("last_edit_date")
-    @Expose
+    @Json(name = "last_edit_date")
     private Integer lastEditDate;
 
     public Owner getOwner() {
@@ -87,14 +76,6 @@ public class Item {
 
     public void setQuestionId(Integer questionId) {
         this.questionId = questionId;
-    }
-
-    public Integer getCommunityOwnedDate() {
-        return communityOwnedDate;
-    }
-
-    public void setCommunityOwnedDate(Integer communityOwnedDate) {
-        this.communityOwnedDate = communityOwnedDate;
     }
 
     public Integer getLastEditDate() {
